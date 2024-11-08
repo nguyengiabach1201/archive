@@ -1,4 +1,4 @@
-A CDN where I store some of my images, files, and codes!!!
+**A CDN where I store some of my images, files, and codes!!!**
 
 See the full file list [here](https://nguyengiabach.com/cdn/files/)
 
