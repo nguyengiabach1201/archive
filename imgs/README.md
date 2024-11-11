@@ -1,4 +1,3 @@
-|   | Name        | Date        | Description   |
-|:-:|-------------|-------------|---------------|
-| 1 | seurat.html | Jan 29/2024 | Prezen (v0.5) |
-| 2 | sketch.html | Sep 16/2024 | Prezen (v2)   |
+|   | Name                                 | Date        | Description                       |
+|:-:|--------------------------------------|-------------|-----------------------------------|
+| 1 | [g-11-11.jpg](./2024/g-11-11.jpg)    | Nov 11 2024 | Geometry homework Nov 11          |
