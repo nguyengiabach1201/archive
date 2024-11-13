@@ -12,21 +12,21 @@
     <ul id="file-list"></ul>
     <script>
         async function fetchRepoContent() {
-            const url = `https://api.github.com/repos/nguyengiabach1201/archive/git/trees/5efb9bc29c482e023e40e0a2b3b7e49cec842034`;
+            const url = `https://api.github.com/repos/nguyengiabach1201/archive/contents/files?ref=main`;
             try {
                 const response = await fetch(url);
                 if (response.ok) {
                     const files = await response.json();
                     const fileList = document.getElementById("file-list");
-                    console.log(files.tree);
-                    // files.forEach((file) => {
-                    //     const listItem = document.createElement("li");
-                    //     const fileLink = document.createElement("a");
-                    //     fileLink.href = file.html_url;
-                    //     fileLink.textContent = file.name;
-                    //     listItem.appendChild(fileLink);
-                    //     fileList.appendChild(listItem);
-                    // });
+                    console.log(files);
+                    files.forEach((file) => {
+                        const listItem = document.createElement("li");
+                        const fileLink = document.createElement("a");
+                        fileLink.href = "https://nguyengiabach.com/archive/files/" + file.name;
+                        fileLink.textContent = file.name;
+                        listItem.appendChild(fileLink);
+                        fileList.appendChild(listItem);
+                    });
                 } else {
                     console.error(
                         "Failed to fetch repository content:",
