@@ -27,14 +27,15 @@ SOFTWARE.
 #include <string>
 #include <map>
 #include <fstream>
-#include <cstdio> // For popen and pclose
+#include <cstdio>
 #include <Windows.h>
 
-// Function to replace all occurrences of a substring
-std::string replaceAll(std::string str, const std::string &from, const std::string &to)
+using namespace std;
+
+string replaceAll(string str, const string &from, const string &to)
 {
     size_t start_pos = 0;
-    while ((start_pos = str.find(from, start_pos)) != std::string::npos)
+    while ((start_pos = str.find(from, start_pos)) != string::npos)
     {
         str.replace(start_pos, from.length(), to);
         start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
@@ -42,15 +43,14 @@ std::string replaceAll(std::string str, const std::string &from, const std::stri
     return str;
 }
 
-// Function to execute a shell command and capture its output
-std::string exec(const char *cmd)
+string exec(const char *cmd)
 {
     char buffer[128];
-    std::string result = "";
+    string result = "";
     FILE *pipe = popen(cmd, "r");
     if (!pipe)
     {
-        throw std::runtime_error("popen() failed!");
+        throw runtime_error("popen() failed!");
     }
     try
     {
@@ -70,14 +70,19 @@ std::string exec(const char *cmd)
 
 int main()
 {
+    string index;
+    cout << "index = ? (1-23)" << "\n";
+    cin >> index;
+
     SetConsoleOutputCP(CP_UTF8);
-    std::vector<std::vector<std::string>> data;
+
+    vector<vector<string>> data;
     data.push_back({"Số báo danh", "Tên", "Trường",
                     "Nguyện vọng 1", "Nguyện vọng 2", "Nguyện vọng 3", "Nguyện vọng chuyên",
                     "Điểm Toán", "Điểm Văn", "Điểm ngoại ngữ", "Điểm môn chuyên",
                     "Tổng điểm chuyên", "Tổng điểm THPT", "Kết quả"});
 
-    std::map<std::string, std::string> query = {
+    map<string, string> query = {
         {"name", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Họvà tên</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"gender", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Giớitính</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"school", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">TrườngTH/THCS</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
@@ -86,7 +91,8 @@ int main()
         {"second", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Nguyệnvọng 2</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"third", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Nguyệnvọng 3</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"major_name", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Nguyệnvọng chuyên</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
-        {"prioritize", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Điểmưu tiên</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
+        {"prioritize", "</td><td></td></tr><!-- <tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Điểmưu tiên</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
+        // {"prioritize", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Điểmưu tiên</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"math", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">ĐiểmToán</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"literature", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">ĐiểmNgữ văn/Tiếng Việt</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
         {"english", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">ĐiểmNgoại Ngữ</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"},
@@ -98,27 +104,27 @@ int main()
         {"end", "</td><td></td></tr><tr id=\"col_form\"style=\"font-family: 'Times New Roman', Times, serif;\"><tdstyle=\"padding: 5px 5px 5px 20px; text-align: left; color: #003366\">Ghi chú</td><td>:</td><td style=\"padding: 5px 5px 5px 5px; text-align: left\">"}};
 
     int mode = 1; // 1: THPT, 3: NTP
-    for (int i = 1; i <= 9999; ++i)
+    for (int i = 1; i <= 5000; ++i)
     {
         try
         {
             char sbd_buf[10];
-            sprintf(sbd_buf, "01%04d", i);
-            std::string sbd = sbd_buf;
+            sprintf(sbd_buf, "%c%c%04d", index.size() == 2 ? index.front() : '0', index.back(), i);
+            string sbd = sbd_buf;
 
-            std::string curl_command = "curl \"http://117.3.133.1:8080/tracuu/index.html?sbd=" + sbd + "&kt=" + std::to_string(mode) + "&timkiem=timkiem\"";
-            std::string result = exec(curl_command.c_str());
+            string curl_command = "curl \"http://103.126.153.106/tracuu/index.html?sbd=" + sbd + "&kt=" + to_string(mode) + "&timkiem=timkiem\"";
+            string result = exec(curl_command.c_str());
 
             result = replaceAll(result, "\t", "");
             result = replaceAll(result, "\n", "");
 
-            std::map<std::string, size_t> queryData;
+            map<string, size_t> queryData;
             for (const auto &pair : query)
             {
                 queryData[pair.first] = result.find(pair.second);
             }
 
-            std::map<std::string, std::string> queryResult;
+            map<string, string> queryResult;
 
             // Extracting values based on the found positions
             // Ensure bounds checking or careful string manipulation
@@ -139,7 +145,16 @@ int main()
             if (queryResult["name"] == "")
                 break;
 
-            std::vector<std::string> row;
+            queryResult["math"] = replaceAll(queryResult["math"], ",", ".");
+            queryResult["literature"] = replaceAll(queryResult["literature"], ",", ".");
+            queryResult["english"] = replaceAll(queryResult["english"], ",", ".");
+            queryResult["major_point"] = replaceAll(queryResult["major_point"], ",", ".");
+            queryResult["math"] = replaceAll(queryResult["math"], ",", ".");
+            queryResult["literature"] = replaceAll(queryResult["literature"], ",", ".");
+            queryResult["total_1"] = replaceAll(queryResult["total_1"], ",", ".");
+            queryResult["total_3"] = replaceAll(queryResult["total_3"], ",", ".");
+
+            vector<string> row;
             row.push_back(sbd);
             row.push_back(queryResult["name"]);
             row.push_back(queryResult["school"]);
@@ -156,23 +171,23 @@ int main()
             row.push_back(queryResult["result"]);
             data.push_back(row);
 
-            std::cout << sbd << " "
-                      << queryResult["name"] << " " << queryResult["school"] << " "
-                      << queryResult["first"] << " " << queryResult["second"] << " "
-                      << queryResult["third"] << " " << queryResult["major_name"] << " "
-                      << queryResult["math"] << " " << queryResult["literature"] << " "
-                      << queryResult["english"] << " " << queryResult["major_point"] << " "
-                      << queryResult["total_1"] << " " << queryResult["total_3"] << " "
-                      << queryResult["result"] << std::endl;
+            cout << sbd << " "
+                 << queryResult["name"] << " " << queryResult["school"] << " "
+                 << queryResult["first"] << " " << queryResult["second"] << " "
+                 << queryResult["third"] << " " << queryResult["major_name"] << " "
+                 << queryResult["math"] << " " << queryResult["literature"] << " "
+                 << queryResult["english"] << " " << queryResult["major_point"] << " "
+                 << queryResult["total_1"] << " " << queryResult["total_3"] << " "
+                 << queryResult["result"] << endl;
         }
-        catch (const std::exception &e)
+        catch (const exception &e)
         {
-            std::cerr << "Some error happened: " << e.what() << std::endl;
+            cerr << "Some error happened: " << e.what() << endl;
             break;
         }
     }
 
-    std::ofstream outputFile("output.csv");
+    ofstream outputFile(index + "output.csv");
     if (outputFile.is_open())
     {
         for (const auto &row : data)
@@ -188,11 +203,11 @@ int main()
             outputFile << "\n";
         }
         outputFile.close();
-        std::cout << "CSV file 'output.csv' created successfully." << std::endl;
+        cout << "CSV file 'output.csv' created successfully." << endl;
     }
     else
     {
-        std::cerr << "Unable to open file 'output.csv'" << std::endl;
+        cerr << "Unable to open file 'output.csv'" << endl;
     }
 
     return 0;
