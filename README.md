@@ -6,7 +6,7 @@ Each item in this repository is identified by an **8-character code** with the f
 
 -   **YYMMDD**: This represents the date the item was archived (**YY** = year, **MM** = month, **DD** = day).
 
--   **X**: This single character indicates the **file type**.
+-   **X**: This single character indicates the **file type** (No case sensitive).
 
 | Character | File extension |  Description  |
 | :-------: | :------------: | :-----------: |
@@ -34,7 +34,7 @@ Each item in this repository is identified by an **8-character code** with the f
 |     V     |      .htm      | Document file |
 |     W     |     .html      | Document file |
 
--   **Y**: This single character is a sequential identifier for files archived on the same day. For example, the first file archived would be `A`, the second would be `B`, and so on.
+-   **Y**: This single character is a sequential identifier for files archived on the same day (No case sensitive). For example, the first file archived would be `A`, the second would be `B`, and so on.
 
 ### Example
 

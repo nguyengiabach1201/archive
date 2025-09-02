@@ -46,10 +46,10 @@
         function redirectToFile() {
             const path = window.location.pathname;
             const parts = path.split('/').filter(p => p);
-            const code = parts[parts.length - 1];
+            const code = parts[parts.length - 1].toUpperCase();
 
             if (code && code.length === 8) {
-                const fileTypeChar = code[6].toUpperCase();
+                const fileTypeChar = code[6];
                 const fileInfo = fileTypeMap[fileTypeChar];
 
                 if (fileInfo) {
