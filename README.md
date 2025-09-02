@@ -1,14 +1,57 @@
-<!-- **A CDN where I store some of my images, files, and codes!!!**
+# Archive
 
-See the full file list [here](https://nguyengiabach.com/archive/files/)
+Each item in this repository is identified by an **8-character code** with the format **YYMMDDXY**.
 
-See the full image list [here](https://nguyengiabach.com/archive/imgs/)
+### Code Breakdown
 
-See the full programming-related list [here](https://nguyengiabach.com/archive/source/)
+-   **YYMMDD**: This represents the date the item was archived (**YY** = year, **MM** = month, **DD** = day).
 
-> [!CAUTION]
-> When copying or writing a link point to a downloadable file, use `https://` otherwise it may not work!!!
-> 
-> Example: `https://nguyengiabach.com/archive/imgs/nguyengiabach1201.jpg` -->
+-   **X**: This single character indicates the **file type**.
 
-# Under construction
+| Character | File extension |  Description  |
+| :-------: | :------------: | :-----------: |
+|     A     |      .png      |  Image file   |
+|     B     |      .jpg      |  Image file   |
+|     C     |     .jpeg      |  Image file   |
+|     D     |      .gif      |  Image file   |
+|     E     |      .mp4      |  Video file   |
+|     F     |      .mp3      |  Audio file   |
+|     G     |      .wav      |  Audio file   |
+|     H     |      .avi      |  Video file   |
+|     I     |      .mov      |  Video file   |
+|     J     |      .zip      | Archive file  |
+|     K     |      .rar      | Archive file  |
+|     L     |      .pdf      | Document file |
+|     M     |      .txt      | Document file |
+|     N     |      .rtf      | Document file |
+|     O     |      .csv      | Document file |
+|     P     |      .doc      | Document file |
+|     Q     |     .docx      | Document file |
+|     R     |      .xls      | Document file |
+|     S     |     .xlsx      | Document file |
+|     T     |      .ppt      | Document file |
+|     U     |     .pptx      | Document file |
+|     V     |      .htm      | Document file |
+|     W     |     .html      | Document file |
+
+-   **Y**: This single character is a sequential identifier for files archived on the same day. For example, the first file archived would be `A`, the second would be `B`, and so on.
+
+### Example
+
+A file named `240312BL.jpg` would have the following meaning:
+
+-   **240312**: Archived on March 12, 2024.
+-   **B**: The file type is `.jpg` (as shown in the table).
+-   **L**: It's the 12th file of any type archived on that day.
+
+> [!NOTE]
+> The file extension on the filename itself is for convenience, but the code is the official identifier.
+
+## Accessing a file via URL
+
+To access a file, simply navigate to the following URL format, replacing the code with your file's unique identifier:
+`https://nguyengiabach.com/archive/YYMMDDXY`
+
+### Example
+
+To access `240312BL.jpg`, use the URL `https://nguyengiabach.com/archive/240312BL`.
