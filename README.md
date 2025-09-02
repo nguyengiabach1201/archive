@@ -47,7 +47,7 @@ A file named `240312BL.jpg` would have the following meaning:
 > [!NOTE]
 > The file extension on the filename itself is for convenience, but the code is the official identifier.
 
-## Accessing a file via URL
+## Accessing a file via indirect URL
 
 To access a file, simply navigate to the following URL format, replacing the code with your file's unique identifier:
 `https://nguyengiabach.com/archive/YYMMDDXY`
@@ -55,3 +55,29 @@ To access a file, simply navigate to the following URL format, replacing the cod
 ### Example
 
 To access `240312BL.jpg`, use the URL `https://nguyengiabach.com/archive/240312BL`.
+
+### Accessing a file via direct URL
+
+You can access a file by typing its full path directly into your browser's address bar. This is the recommended method for linking to any media.
+
+> [!WARNING]
+> When embedding an image, video, or other media file in HTML, you must always provide the full, correct path to the file. The short 8-character code alone will not work.
+
+### Example
+
+```html
+<img
+    src="http://nguyengiabach1201.github.io/archive/images/250821BA.jpg"
+    alt="The Longma at Quoc Hoc's trấn phong"
+/>
+```
+
+## Folder Structure
+
+Files are organized by type into the following subdirectories:
+
+-   `/archive/images/`
+-   `/archive/videos/`
+-   `/archive/audios/`
+-   `/archive/documents/`
+-   `/archive/archives/`
